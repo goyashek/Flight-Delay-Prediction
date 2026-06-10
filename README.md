@@ -106,8 +106,7 @@ flight-delay-prediction/
 ├── data/
 │   └── data_source.txt
 │
-├── notebooks/
-│   └── flight_delay_portfolio.ipynb
+├── flight_delay_portfolio.ipynb
 │
 ├── reports/
 │   └── project_report.pdf
