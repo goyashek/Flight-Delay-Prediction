@@ -88,7 +88,8 @@ pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
 ```text
 flight-delay-prediction/
 │
-│
+├──data/
+    └── data_source.txt
 ├── notebooks/
 │   └── flight_delay_portfolio.ipynb
 │
