@@ -86,9 +86,37 @@ pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
 ## Project Structure
 
 ```text
-├── flight_delay_portfolio_cleaned.ipynb
+flight-delay-prediction/
+│
+│
+├── notebooks/
+│   └── flight_delay_portfolio.ipynb
+│
+├── reports/
+│   └── project_report.pdf          
+│
+├── plots/
+│   ├── plot1_delay_distribution.png
+│   ├── plot2_delay_causes.png
+│   ├── plot3_seasonal_heatmap.png
+│   ├── plot4_hourly_pattern.png
+│   ├── plot5_airport_delay.png
+│   ├── plot6_cancellations.png
+│   ├── plot7_weekly_pattern.png
+│   ├── plot8_correlation.png
+│   ├── plot9_distance_bucket.png
+│   ├── plot10_confusion_matrices.png
+│   ├── plot11_roc_curves.png
+│   ├── plot12_model_comparison.png
+│   └── plot13_feature_importance.png
+│
 ├── README.md
-└── flight_delay_sample.csv
+├── requirements.txt
+├── .gitignore
+└── LICENSE
+
+
+
 ```
 
 ## Portfolio Highlights
