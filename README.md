@@ -4,72 +4,82 @@ End-to-end machine learning project that predicts whether a flight will arrive l
 
 ## Project Overview
 
-Flight delays create operational costs for airlines and inconvenience for passengers. This project builds a classification pipeline that predicts arrival delays before departure using features available at scheduling time.
+Flight delays create operational costs for airlines and inconvenience for passengers. This project builds a classification pipeline that predicts arrival delays before departure using features available before takeoff.
 
 ## Workflow
 
-1. Data loading and quality assessment
-2. Data cleaning and leakage prevention
+1. Data Loading & Quality Assessment
+2. Data Cleaning & Leakage Prevention
 3. Exploratory Data Analysis (EDA)
-4. Feature engineering
-5. Model development
-6. Cross-validation
-7. Hyperparameter tuning
-8. Model evaluation
-9. Model interpretation (Feature Importance + SHAP)
-10. Error analysis
-11. Business recommendations
+4. Feature Engineering
+5. Model Development
+6. Cross-Validation
+7. Hyperparameter Tuning
+8. Model Evaluation
+9. Model Interpretation (Feature Importance + SHAP)
+10. Error Analysis
+11. Business Recommendations
 
-## Dataset Features
+## Dataset
 
-Examples of variables used:
+The original dataset (~289 MB) is not included in this repository due to GitHub size considerations.
 
-- Airline
-- Origin airport
-- Destination airport
-- Scheduled departure time
-- Day of week
-- Month
-- Route information
-- Distance
-- Historical airline performance
+To reproduce the project:
 
-Target:
+1. Download the dataset from the original source.
+2. Place it inside the `data/` directory.
+3. Update the notebook path if required.
 
-- `IsDelayed` (binary classification)
+Example:
+
+```text
+data/
+└── flight_data_2018_2024.csv
+```
+
+### Target Variable
+
+`ArrDel15`
+
+* 0 → On-Time Flight
+* 1 → Delayed Flight (>15 minutes)
 
 ## Models Trained
 
-- Logistic Regression
-- Random Forest
-- XGBoost
+* Logistic Regression
+* Random Forest
+* XGBoost
 
 ## Techniques Demonstrated
 
-- Missing value handling
-- Data leakage detection
-- Feature engineering
-- One-hot encoding
-- Scaling
-- Stratified train-test split
-- Cross-validation
-- Hyperparameter tuning
-- ROC-AUC evaluation
-- Confusion matrix analysis
-- SHAP explainability
-- Error analysis
+* Missing Value Handling
+* Data Leakage Detection
+* Feature Engineering
+* One-Hot Encoding
+* Feature Scaling
+* Stratified Train-Test Split
+* Cross-Validation
+* Hyperparameter Tuning
+* ROC-AUC Evaluation
+* Confusion Matrix Analysis
+* SHAP Explainability
+* Error Analysis
 
 ## Key Visualizations
 
-- Delay distribution
-- Delay causes by airline
-- Seasonal delay heatmap
-- Delay rate by departure hour
-- Airport-wise delay analysis
-- Cancellation analysis
-- Weekly delay trends
-- Correlation matrix
-- Distance vs delay analysis
+* Delay Distribution
+* Delay Causes Analysis
+* Seasonal Delay Heatmap
+* Hourly Delay Patterns
+* Airport-Wise Delay Analysis
+* Cancellation Analysis
+* Weekly Delay Trends
+* Correlation Matrix
+* Distance vs Delay Analysis
+* Confusion Matrices
+* ROC Curves
+* Model Comparison
+* Feature Importance
 
 ## Installation
 
@@ -79,22 +89,29 @@ pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
 
 ## Running the Project
 
-1. Place the dataset in the project directory.
-2. Update the dataset path if needed.
-3. Run the notebook from top to bottom.
+```bash
+git clone <repository-url>
+cd flight-delay-prediction
+```
+
+1. Download the dataset.
+2. Place it inside the `data/` folder.
+3. Open `notebooks/flight_delay_portfolio.ipynb`.
+4. Run all cells sequentially.
 
 ## Project Structure
 
 ```text
 flight-delay-prediction/
 │
-├──data/
-    └── data_source.txt
+├── data/
+│   └── data_source.txt
+│
 ├── notebooks/
 │   └── flight_delay_portfolio.ipynb
 │
 ├── reports/
-│   └── project_report.pdf          
+│   └── project_report.pdf
 │
 ├── plots/
 │   ├── plot1_delay_distribution.png
@@ -115,31 +132,27 @@ flight-delay-prediction/
 ├── requirements.txt
 ├── .gitignore
 └── LICENSE
-
-
-
 ```
 
 ## Portfolio Highlights
 
-This project demonstrates:
-
-- End-to-end ML workflow
-- Feature engineering based on domain knowledge
-- Multiple model comparison
-- Hyperparameter optimization
-- Model interpretability
-- Business-focused insights and recommendations
+* End-to-End Machine Learning Pipeline
+* Real-World Data Cleaning
+* Feature Engineering Based on Domain Knowledge
+* Multiple Model Comparison
+* Hyperparameter Optimization
+* Model Explainability with SHAP
+* Business-Oriented Insights & Recommendations
 
 ## Future Improvements
 
-- Time-based validation
-- Weather integration
-- Flight network features
-- Real-time prediction API
-- Model monitoring dashboard
+* Time-Based Validation
+* Weather Data Integration
+* Flight Network Features
+* Real-Time Prediction API
+* Model Monitoring Dashboard
 
 ## Author
 
-Abhi Goyal
+**Abhi Goyal**
 M.Sc. IIT Delhi
