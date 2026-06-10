@@ -16,7 +16,7 @@ Flight delays create operational costs for airlines and inconvenience for passen
 6. Cross-Validation
 7. Hyperparameter Tuning
 8. Model Evaluation
-9. Model Interpretation (Feature Importance + SHAP)
+9. Model Interpretation
 10. Error Analysis
 11. Business Recommendations
 
@@ -27,8 +27,7 @@ The original dataset (~289 MB) is not included in this repository due to GitHub 
 To reproduce the project:
 
 1. Download the dataset from the original source.
-2. Place it inside the `data/` directory.
-3. Update the notebook path if required.
+2. Update the notebook path if required.
 
 Example:
 
