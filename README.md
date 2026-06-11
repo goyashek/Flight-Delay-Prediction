@@ -83,19 +83,19 @@ data/
 ## Installation
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost
 ```
 
 ## Running the Project
 
 ```bash
-git clone <repository-url>
+git clone 'https://github.com/goyashek/Flight-Delay-Prediction'
 cd flight-delay-prediction
 ```
 
 1. Download the dataset.
 2. Place it inside the `data/` folder.
-3. Open `notebooks/flight_delay_portfolio.ipynb`.
+3. Open `notebooks/***.ipynb`.
 4. Run all cells sequentially.
 
 ## Project Structure
@@ -106,10 +106,9 @@ flight-delay-prediction/
 ├── data/
 │   └── data_source.txt
 │
-├── flight_delay_portfolio.ipynb
-│
-├── reports/
-│   └── project_report.pdf
+├── notebooks/
+│   └── Core-ML.ipynb
+│   └── EDA.ipynb
 │
 ├── plots/
 │   ├── plot1_delay_distribution.png
