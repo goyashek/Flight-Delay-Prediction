@@ -1,0 +1,9 @@
+{
+  "backend": "pytorch",
+  "n_features": 758,
+  "best_f1_threshold": 0.56,
+  "biz_threshold": 0.7500000000000001,
+  "roc_auc": 0.7723618244184345,
+  "f1_at_best_thresh": 0.5311152594452613,
+  "architecture": "512-256-256(residual)-128-1"
+}
