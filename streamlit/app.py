@@ -15,13 +15,17 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache_resource          
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent   # ← always points to the streamlit/ folder
+
+@st.cache_resource
 def load_artifacts():
-    with open('flight_delay_model.pkl', 'rb') as f:
+    with open(BASE_DIR / 'flight_delay_model.pkl', 'rb') as f:
         model = pickle.load(f)
-    with open('flight_delay_lookups.pkl', 'rb') as f:
+    with open(BASE_DIR / 'flight_delay_lookups.pkl', 'rb') as f:
         lookups = pickle.load(f)
-    with open('flight_delay_stats.pkl', 'rb') as f:
+    with open(BASE_DIR / 'flight_delay_stats.pkl', 'rb') as f:
         stats = pickle.load(f)
     return model, lookups, stats
 
