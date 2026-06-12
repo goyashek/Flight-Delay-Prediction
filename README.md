@@ -1,116 +1,83 @@
-# Flight Delay Prediction
+# ✈️ Flight Delay Prediction
 
-End-to-end machine learning project that predicts whether a flight will arrive late using historical flight and operational data.
+Predicts whether a US domestic flight will arrive more than 15 minutes late — using only information available before the flight takes off.
 
-## Project Overview
+Built as an end-to-end ML project: raw data → cleaning → feature engineering → model training → interactive Streamlit app.
 
-Flight delays create operational costs for airlines and inconvenience for passengers. This project builds a classification pipeline that predicts arrival delays before departure using features available before takeoff.
+---
 
-## Workflow
+## How to Run
 
-1. Data Loading & Quality Assessment
-2. Data Cleaning & Leakage Prevention
-3. Exploratory Data Analysis (EDA)
-4. Feature Engineering
-5. Model Development
-6. Cross-Validation
-7. Hyperparameter Tuning
-8. Model Evaluation
-9. Model Interpretation
-10. Error Analysis
-11. Business Recommendations
+### 1. Clone the repo
 
-## Dataset
+```bash
+git clone https://github.com/goyashek/Flight-Delay-Prediction
+cd Flight-Delay-Prediction
+```
 
-The original dataset (~289 MB) is not included in this repository due to GitHub size considerations.
+### 2. Install dependencies
 
-To reproduce the project:
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost streamlit
+```
 
-1. Download the dataset from the original source.
-2. Update the notebook path if required.
+### 3. Get the dataset
 
-Example:
+The CSV (~289 MB) isn't included due to GitHub size limits.  
+Download it and place it here:
 
-```text
+```
 data/
 └── flight_data_2018_2024.csv
 ```
 
-### Target Variable
+### 4. Run the notebooks
 
-`ArrDel15`
+Open and run both notebooks in order:
 
-* 0 → On-Time Flight
-* 1 → Delayed Flight (>15 minutes)
+| Notebook | What it does |
+|---|---|
+| `notebooks/EDA.ipynb` | Exploratory analysis and visualizations |
+| `notebooks/Core-ML.ipynb` | Feature engineering, model training, evaluation |
 
-## Models Trained
+### 5. Export the model
 
-* Logistic Regression
-* Random Forest
-* XGBoost
+Open `notebooks/pickle extract.ipynb` and run all cells.  
+This saves 3 files into the `streamlit/` folder:
 
-## Techniques Demonstrated
-
-* Missing Value Handling
-* Data Leakage Detection
-* Feature Engineering
-* One-Hot Encoding
-* Feature Scaling
-* Stratified Train-Test Split
-* Cross-Validation
-* Hyperparameter Tuning
-* ROC-AUC Evaluation
-* Confusion Matrix Analysis
-* SHAP Explainability
-* Error Analysis
-
-## Key Visualizations
-
-* Delay Distribution
-* Delay Causes Analysis
-* Seasonal Delay Heatmap
-* Hourly Delay Patterns
-* Airport-Wise Delay Analysis
-* Cancellation Analysis
-* Weekly Delay Trends
-* Correlation Matrix
-* Distance vs Delay Analysis
-* Confusion Matrices
-* ROC Curves
-* Model Comparison
-* Feature Importance
-
-## Installation
-
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost
+```
+streamlit/
+├── flight_delay_model.pkl      ← trained XGBoost pipeline
+├── flight_delay_lookups.pkl    ← dropdown values for the UI
+└── flight_delay_stats.pkl      ← historical delay rates used as features
 ```
 
-## Running the Project
+### 6. Launch the Streamlit app
 
 ```bash
-git clone 'https://github.com/goyashek/Flight-Delay-Prediction'
-cd flight-delay-prediction
+cd streamlit
+streamlit run app.py
 ```
 
-1. Download the dataset.
-2. Place it inside the `data/` folder.
-3. Open `notebooks/***.ipynb`.
-4. Run all cells sequentially.
+Then open `http://localhost:8501` in your browser.  
+Fill in the flight details and hit **Predict** to see the result.
+
+---
 
 ## Project Structure
 
-```text
-flight-delay-prediction/
+```
+Flight-Delay-Prediction/
 │
 ├── data/
-│   └── data_source.txt
+│   └── flight_data_2018_2024.csv       ← not tracked in git
 │
 ├── notebooks/
-│   └── Core-ML.ipynb
-│   └── EDA.ipynb
+│   ├── EDA.ipynb                        ← exploratory analysis
+│   ├── Core-ML.ipynb                    ← model training pipeline
+│   └── pickle extract.ipynb            ← exports model + pickle files
 │
-├── plots/
+├── plots/                               ← all generated visualizations
 │   ├── plot1_delay_distribution.png
 │   ├── plot2_delay_causes.png
 │   ├── plot3_seasonal_heatmap.png
@@ -125,31 +92,59 @@ flight-delay-prediction/
 │   ├── plot12_model_comparison.png
 │   └── plot13_feature_importance.png
 │
+├── streamlit/
+│   ├── app.py                           ← Streamlit prediction app
+│   ├── flight_delay_model.pkl
+│   ├── flight_delay_lookups.pkl
+│   └── flight_delay_stats.pkl
+│
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
 └── LICENSE
 ```
 
-## Portfolio Highlights
+---
 
-* End-to-End Machine Learning Pipeline
-* Real-World Data Cleaning
-* Feature Engineering Based on Domain Knowledge
-* Multiple Model Comparison
-* Hyperparameter Optimization
-* Model Explainability with SHAP
-* Business-Oriented Insights & Recommendations
+## What it predicts
 
-## Future Improvements
+**Target:** `ArrDel15` — did the flight arrive more than 15 minutes late?
 
-* Time-Based Validation
-* Weather Data Integration
-* Flight Network Features
-* Real-Time Prediction API
-* Model Monitoring Dashboard
+- `0` → On-Time
+- `1` → Delayed
+
+About **24%** of non-cancelled flights in the dataset are delayed by this definition.
+
+---
+
+## Models
+
+Three classifiers were trained and compared:
+
+| Model | Notes |
+|---|---|
+| Logistic Regression | Baseline, fast and interpretable |
+| Random Forest | Strong performance, good feature importance |
+| XGBoost | Best overall — used in the app |
+
+All models use a sklearn `Pipeline` with median imputation, standard scaling, and one-hot encoding — so there's no data leakage between train and test.
+
+---
+
+## Key Features Used
+
+All features are knowable **before departure** (no leakage):
+
+- Scheduled departure/arrival time, flight duration, distance
+- Airline, origin airport, destination airport
+- Day of week, month, hour of day (with cyclic encoding)
+- Peak hour flag, weekend flag, holiday window flag
+- Historical delay rate per airline and origin airport
+- Average taxi-out time at origin (congestion proxy)
+
+---
 
 ## Author
 
-**Abhi Goyal**
-M.Sc. IIT Delhi
+**Abhi Goyal** · M.Sc. IIT Delhi  
+[github.com/goyashek](https://github.com/goyashek)
